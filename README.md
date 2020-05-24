@@ -23,18 +23,24 @@ Let’s add a build step that prints date by adding the “Executing shell” st
 Click on the “Add build step” drop-down and select “Execute shell”
 Now type the following command:
 
+
 ![job1](https://user-images.githubusercontent.com/52490743/82749477-24392900-9dc7-11ea-8e99-638157737915.png)
+
 
 ### Job 2 :
 
 Automatic launch and training the model.
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.
 
+
 ![job2](https://user-images.githubusercontent.com/52490743/82749485-2c916400-9dc7-11ea-9df9-801b4d1f06dc.png)
+
 
 Now to go to Build Execute shell and type the following command.
 
+
 ![job2 2](https://user-images.githubusercontent.com/52490743/82749481-269b8300-9dc7-11ea-99e0-a05a3629036c.png)
+
 
 Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.
 
@@ -79,11 +85,16 @@ Click the ‘Build now’ link and check the email id after the job execution.
 Add another job in Jenkins and name it.
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job
 
+
 ![job3](https://user-images.githubusercontent.com/52490743/82749489-32874500-9dc7-11ea-8d44-93dcea55ebd1.png)
+
 
 Now in the Execute shell type the following command.
 
+
 ![job3 2](https://user-images.githubusercontent.com/52490743/82749487-2ef3be00-9dc7-11ea-8d7c-2bd07fceba8b.png)
+
+
 
 ### Job 4 :
 
@@ -91,7 +102,9 @@ Now in the Execute shell type the following command.
 
 Go to the jenkins manage plugins and install prometheus mertics plugin.
 
+
 ![job4 2](https://user-images.githubusercontent.com/52490743/82749495-361acc00-9dc7-11ea-878a-e3fa0b88a3d5.png)
+
 
 Now, Go to the main site of prometheus and download the tar file for Linux operating system.
 When the file has been downloaded type in the container :
@@ -101,13 +114,17 @@ vim prometheus.yml
 
 Go to the last line and add another - job name: 'jenkins' as shown in the picture and type the command.
 
+
 ![job4](https://user-images.githubusercontent.com/52490743/82749497-37e48f80-9dc7-11ea-9889-ebe64f37050e.png)
+
 
 To execute prometheus type in the CLI : ./prometheus
 Prometheus uses a default port 9090. Go to the port then click on Status>Targets.
 Here you will see another target has been added to the dashboard.
 
+
 ![job5](https://user-images.githubusercontent.com/52490743/82749501-3a46e980-9dc7-11ea-9927-aa510000802c.png)
+
 
 #### Installing Grafana on Linux
 
@@ -130,6 +147,7 @@ First install delivery pipeline and build pipeline plugin on jenkins.
 Click on '+' in Jenkins Dashboard and select pipeline and give a name to the pipeline.
 Now select the Job that you want to start the pipeline from, here i have given it my first job.
 This is the final look after all the jobs will be build.
+
 
 ![job6](https://user-images.githubusercontent.com/52490743/82749502-3c10ad00-9dc7-11ea-922e-be0a90cd4759.png)
 
