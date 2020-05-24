@@ -6,6 +6,49 @@ The GitHub plugin extends upon that integration further by providing improved bi
 Jenkins's job creation is an effortless process, In this article, we will learn how to create a job in Jenkins and configure project cloning from the Git.
 Let’s get started :
 
+First we wite a code in code_file2.py file.
+The code is given in the repository.
+
+### Creating a dockerfile :
+
+In RHEL8 fisrt make a directory that will store all the data or the program for our machine learning model.
+    *mkdir Code*
+Now the jenkins will automatically copy the files in this folder.
+Download a centos:7 image in docker using:
+    *docker pull centos:7*
+    *docker run -it --name os centos:7*
+Now install miniconda in this centos:7 :
+
+ *yum -y update 
+yum -y install curl bzip2 
+curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
+bash /tmp/miniconda.sh -bfp /usr/local/ 
+rm -rf /tmp/miniconda.sh 
+conda install -y python=3 
+conda update conda 
+conda clean --all --yes 
+rpm -e --nodeps curl bzip2 
+yum clean all*
+
+Now install al the requirements for the Machine learning model.
+After the requirements are fulfilled use commit command to make your own image and we will use this image in our Dockerfile.
+    *docker commit os myimage:v2*
+Now type:
+    *vim Dockerfile*
+And write the following code:
+
+    FROM: myimage:v2
+    RUN mkdir /root/my_model
+    VOLUME /root/my_model
+    COPY ./Code/. ./root/my_model/
+    WORKDIR /root/my_model
+    CMD ["python3","code_file2.py"]
+    
+Save this docker file and now build two different images for different environments:
+    
+     docker build -t deep:v1 /root
+     docker build -t neural_net:v1 /root
+    
 ### Job 1 :
 
 Create a new job in Jenkins.
@@ -27,6 +70,7 @@ Now type the following command:
 ![job1](https://user-images.githubusercontent.com/52490743/82749477-24392900-9dc7-11ea-8e99-638157737915.png)
 
 
+#### 
 ### Job 2 :
 
 Automatic launch and training the model.
@@ -41,7 +85,7 @@ Now to go to Build Execute shell and type the following command.
 
 ![job2 2](https://user-images.githubusercontent.com/52490743/82749481-269b8300-9dc7-11ea-99e0-a05a3629036c.png)
 
-
+This will first check the model and will start the container accordingly.
 Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.
 
 #### Configure Email notification in jenkins :
@@ -108,9 +152,9 @@ Go to the jenkins manage plugins and install prometheus mertics plugin.
 
 Now, Go to the main site of prometheus and download the tar file for Linux operating system.
 When the file has been downloaded type in the container :
-tar -xzf <software_name>
-Now open the prometheus using cd <software_name> and open the prometheus yaml file using vim command:
-vim prometheus.yml
+*tar -xzf <software_name>*
+Now open the prometheus using *cd <software_name>* and open the prometheus yaml file using vim command:
+*vim prometheus.yml*
 
 Go to the last line and add another - job name: 'jenkins' as shown in the picture and type the command.
 
@@ -150,15 +194,6 @@ This is the final look after all the jobs will be build.
 
 
 ![job6](https://user-images.githubusercontent.com/52490743/82749502-3c10ad00-9dc7-11ea-922e-be0a90cd4759.png)
-
-
-
-
-
-
-
-
-
 
 
 
