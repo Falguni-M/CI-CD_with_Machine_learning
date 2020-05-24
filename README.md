@@ -12,29 +12,37 @@ The code is given in the repository.
 ### Creating a dockerfile :
 
 In RHEL8 fisrt make a directory that will store all the data or the program for our machine learning model.
-    *mkdir Code*
+        
+        mkdir Code
+        
 Now the jenkins will automatically copy the files in this folder.
 Download a centos:7 image in docker using:
-    *docker pull centos:7*
-    *docker run -it --name os centos:7*
+    
+    docker pull centos:7
+    docker run -it --name os centos:7
+    
 Now install miniconda in this centos:7 :
 
- *yum -y update 
-yum -y install curl bzip2 
-curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
-bash /tmp/miniconda.sh -bfp /usr/local/ 
-rm -rf /tmp/miniconda.sh 
-conda install -y python=3 
-conda update conda 
-conda clean --all --yes 
-rpm -e --nodeps curl bzip2 
-yum clean all*
+      yum -y update 
+      yum -y install curl bzip2 
+      curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
+      bash /tmp/miniconda.sh -bfp /usr/local/ 
+      rm -rf /tmp/miniconda.sh 
+      conda install -y python=3 
+      conda update conda 
+      conda clean --all --yes 
+      rpm -e --nodeps curl bzip2 
+      yum clean all
 
 Now install al the requirements for the Machine learning model.
 After the requirements are fulfilled use commit command to make your own image and we will use this image in our Dockerfile.
-    *docker commit os myimage:v2*
+    
+      docker commit os myimage:v2
+      
 Now type:
-    *vim Dockerfile*
+    
+     vim Dockerfile
+     
 And write the following code:
 
     FROM: myimage:v2
@@ -152,9 +160,14 @@ Go to the jenkins manage plugins and install prometheus mertics plugin.
 
 Now, Go to the main site of prometheus and download the tar file for Linux operating system.
 When the file has been downloaded type in the container :
-*tar -xzf <software_name>*
-Now open the prometheus using *cd <software_name>* and open the prometheus yaml file using vim command:
-*vim prometheus.yml*
+
+      tar -xzf <software_name>
+      
+Now open the prometheus using
+      
+      cd <software_name>
+      vim command:
+      vim prometheus.yml
 
 Go to the last line and add another - job name: 'jenkins' as shown in the picture and type the command.
 
