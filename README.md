@@ -89,7 +89,7 @@ Go to build triggers and click on 'Build after other projects are built' and giv
 
 
 Now to go to Build Execute shell and type the following command.</br>
-You can also use *if sudo grep "sigmoid" /root/code/code_file2.py* or *if sudo grep "softmax" /root/code/code_file2.py</br>
+You can also use *if sudo grep "sigmoid" /root/code/code_file2.py* or *if sudo grep "softmax" /root/code/code_file2.py*</br>
 
 
 </br>![job2 2](https://user-images.githubusercontent.com/52490743/82749481-269b8300-9dc7-11ea-99e0-a05a3629036c.png)</br>
