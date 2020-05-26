@@ -1,12 +1,12 @@
 # CI-CD_with_Machine_learning
 
-With the help of the Git plugin Jenkins can easily pull source code from any Git repository that the Jenkins build node can access.<br/>
+With the help of the Git plugin Jenkins can easily pull source code from any Git repository that the Jenkins build node can access.<br/></br>
 
 The GitHub plugin extends upon that integration further by providing improved bi-directional integration with GitHub. Allowing you to set up a Service Hook which will hit your Jenkins instance every time a change is pushed to GitHub.<br/>
 Jenkins's job creation is an effortless process, In this article, we will learn how to create a job in Jenkins and configure project cloning from the Git.<br/>
-Let’s get started :<br/>
+Let’s get started :<br/></br>
 
-First we wite a code in code_file2.py file.<br/>
+First we write a code in code_file2.py file.<br/>
 The code is given in the repository.<br/>
 
 ### Creating a dockerfile :
@@ -34,7 +34,7 @@ Now install miniconda in this centos:7 :
       rpm -e --nodeps curl bzip2 
       yum clean all
 
-Now install al the requirements for the Machine learning model.<br/>
+Now install all the requirements for the Machine learning model.<br/>
 After the requirements are fulfilled use commit command to make your own image and we will use this image in our Dockerfile.<br/>
     
       docker commit os myimage:v2
@@ -68,11 +68,11 @@ You will be redirected to the job configuration page where you can see the follo
 -> Build: The section contents the build steps that can be performed by adding Batch or shell command.<br/>
 -> Post-build Actions: The section contents the build steps that can be performed after the build action done.<br/>
 
-![job1 2](https://user-images.githubusercontent.com/52490743/82749473-20a5a200-9dc7-11ea-9385-be7f2e89f930.png)
+</br>![job1 2](https://user-images.githubusercontent.com/52490743/82749473-20a5a200-9dc7-11ea-9385-be7f2e89f930.png)</br>
 
-Let’s add a build step that prints date by adding the “Executing shell” step.<br/>
+</br>Let’s add a build step that prints date by adding the “Executing shell” step.<br/>
 Click on the “Add build step” drop-down and select “Execute shell”<br/>
-Now type the following command:
+Now type the following command:</br>
 
 
 ![job1](https://user-images.githubusercontent.com/52490743/82749477-24392900-9dc7-11ea-8e99-638157737915.png)
@@ -85,16 +85,17 @@ Automatic launch and training the model.<br/>
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.<br/>
 
 
-![job2](https://user-images.githubusercontent.com/52490743/82749485-2c916400-9dc7-11ea-9df9-801b4d1f06dc.png)
+</br>![job2](https://user-images.githubusercontent.com/52490743/82749485-2c916400-9dc7-11ea-9df9-801b4d1f06dc.png)</br>
 
 
-Now to go to Build Execute shell and type the following command.
+Now to go to Build Execute shell and type the following command.</br>
+You can also use *if sudo grep "sigmoid" /root/code/code_file2.py* or *if sudo grep "softmax" /root/code/code_file2.py</br>
 
 
-![job2 2](https://user-images.githubusercontent.com/52490743/82749481-269b8300-9dc7-11ea-99e0-a05a3629036c.png)
+</br>![job2 2](https://user-images.githubusercontent.com/52490743/82749481-269b8300-9dc7-11ea-99e0-a05a3629036c.png)</br>
 
 This will first check the model and will start the container accordingly.<br/>
-Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.<br/>
+Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.<br/></br>
 
 #### Configure Email notification in jenkins :
 
@@ -103,22 +104,22 @@ Click the ‘Available’ tab present at the top of the ‘Manage Plugin’ page
 Start typing ‘Notification’ in the ‘Filter’ field displayed at the top-right side of the ‘Manage Plugin’ page. Click the checkbox next to the ‘Email-ext plugin’ option. Click the ‘Install without restart’ button.<br/>
 Now, click the checkbox next to the ‘Email-ext Template Plugin’ option. Click the ‘Install without restart’ button.<br/>
 Go to the Jenkins home page and click the ‘Manage Jenkins’ menu option. Then, select the ‘Configure System’ option.<br/>
-Enter the SMTP server name under ‘Email Notification’. Click the ‘Advanced’ button and then click the checkbox next to the ‘Use SMTP Authentication’ option. Now, set the following fields.<br/>
+Enter the SMTP server name under ‘Email Notification’. Click the ‘Advanced’ button and then click the checkbox next to the ‘Use SMTP Authentication’ option. Now, set the following fields.<br/></br>
 
 SMTP server name : smtp.gmail.com<br/>
 User name: user_email_id@gmail.com<br/>
 Password: 123456<br/>
 Use SSL : Checked<br/>
-SMTP Port: 456<br/>
+SMTP Port: 456<br/></br>
 
 Check the email notification functionality by clicking the checkbox next to the ‘Test configuration by sending Test e-mail recipient’ option. Enter a valid email id and click the ‘Test configuration’ button to check whether the email id is valid or not.<br/>
-Go to the home page and click on a created job, like Homes. Then, click the ‘Configure’ option.<br/>
+Go to the home page and click on a created job, like Homes. Then, click the ‘Configure’ option.<br/></br>
 
 Click the ‘Add post-build action’ drop-down.<br/>
 Select the ‘E-mail Notification’ value.<br/>
 Enter the recipient email id in the ‘E-mail Notification’ box and select the checkbox next to the ‘Send e-mail for every unstable build’ option.<br/>
 Click the ‘Add post-build action’ drop-down and select the ‘Editable Email Notification’ value.<br/>
-Fill the ‘Editable Email Notification’ fields.<br/>
+Fill the ‘Editable Email Notification’ fields.<br/></br>
 
 Project Recipient List : email_id@gmail.com<br/>
 Click the ‘Advance Settings…’ button in the ‘Editable Email Notification’ box.<br/>
@@ -128,23 +129,57 @@ Go to the home page and click on the job, like Homes.<br/>
 Click the ‘Build now’ link and check the email id after the job execution.<br/>
 
 
-![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)
+</br>![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)</br
 
+
+#### Tweaking the model :
+
+For checking the accuracy and running the model for improved accuracy we use the following code.</br></br>
+
+*actual_accuracy=$(sudo cat /root/code/acc.txt)
+expected=95
+compare=$(echo "$actual_accuracy > $expected" | bc )*
+
+*epoch=1
+layer=1*
+
+*while [[ $compare != 1 ]]
+do
+let epoch+=1
+let layer+=1
+sudo sed -i '/no_epoch=/c\no_epoch='$no_epoch /root/code/code_file2.py
+sudo sed -i '/no_layer=/c\no_layer='$no_layer /root/code/code_file2.py
+if sudo grep "deep" /root/code/code_file2.py
+then
+        test -t 1 && USE_TTY="-t"
+        sudo docker rm -f os1
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 
+elif sudo grep "neural_net" /root/code/code_file2.py
+then
+        test -t 1 && USE_TTY="-t"
+        sudo docker rm -f os1
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 
+
+compare=$(echo "$actual_accuracy > $expected" | bc )
+done*</br></br>
+
+For the tweaking you can refer to another code in the repository.
 
 
 ### Job 3 :
 
+Terminating the container :
 Add another job in Jenkins and name it.<br/>
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.<br/>
 
 
-![job3](https://user-images.githubusercontent.com/52490743/82749489-32874500-9dc7-11ea-8d44-93dcea55ebd1.png)
+</br>![job3](https://user-images.githubusercontent.com/52490743/82749489-32874500-9dc7-11ea-8d44-93dcea55ebd1.png)</br>
 
 
-Now in the Execute shell type the following command.
+Now in the Execute shell type the following command.</br>
 
 
-![job3 2](https://user-images.githubusercontent.com/52490743/82749487-2ef3be00-9dc7-11ea-8d7c-2bd07fceba8b.png)
+</br>![job3 2](https://user-images.githubusercontent.com/52490743/82749487-2ef3be00-9dc7-11ea-8d7c-2bd07fceba8b.png)</br>
 
 
 
@@ -152,10 +187,10 @@ Now in the Execute shell type the following command.
 
 #### Installing prometheus on Linux.
 
-Go to the jenkins manage plugins and install prometheus mertics plugin.
+Go to the jenkins manage plugins and install prometheus mertics plugin.</br>
 
 
-![job4 2](https://user-images.githubusercontent.com/52490743/82749495-361acc00-9dc7-11ea-878a-e3fa0b88a3d5.png)
+</br>![job4 2](https://user-images.githubusercontent.com/52490743/82749495-361acc00-9dc7-11ea-878a-e3fa0b88a3d5.png)</br>
 
 
 Now, Go to the main site of prometheus and download the tar file for Linux operating system.<br/>
@@ -172,7 +207,7 @@ Now open the prometheus using
 Go to the last line and add another - job name: 'jenkins' as shown in the picture and type the command.
 
 
-![job4](https://user-images.githubusercontent.com/52490743/82749497-37e48f80-9dc7-11ea-9889-ebe64f37050e.png)
+</br>![job4](https://user-images.githubusercontent.com/52490743/82749497-37e48f80-9dc7-11ea-9889-ebe64f37050e.png)</br>
 
 
 To execute prometheus type in the CLI : ./prometheus<br/>
