@@ -136,34 +136,34 @@ Click the ‘Build now’ link and check the email id after the job execution.<b
 
 For checking the accuracy and running the model for improved accuracy we use the following code.</br></br>
 
-*actual_accuracy=$(sudo cat /root/code/acc.txt)
-expected=95
-compare=$(echo "$actual_accuracy > $expected" | bc )*
+*actual_accuracy=$(sudo cat /root/code/acc.txt)</br>
+expected=95</br>
+compare=$(echo "$actual_accuracy > $expected" | bc )*</br>
 
-*epoch=1
-layer=1*
+*epoch=1</br>
+layer=1*</br>
 
-*while [[ $compare != 1 ]]
-do
-let epoch+=1
-let layer+=1
-sudo sed -i '/no_epoch=/c\no_epoch='$no_epoch /root/code/code_file2.py
-sudo sed -i '/no_layer=/c\no_layer='$no_layer /root/code/code_file2.py
-if sudo grep "deep" /root/code/code_file2.py
-then
-        test -t 1 && USE_TTY="-t"
-        sudo docker rm -f os1
-        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 
-elif sudo grep "neural_net" /root/code/code_file2.py
-then
-        test -t 1 && USE_TTY="-t"
-        sudo docker rm -f os1
-        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 
+*while [[ $compare != 1 ]]</br>
+do</br>
+let epoch+=1</br>
+let layer+=1</br>
+sudo sed -i '/no_epoch=/c\no_epoch='$no_epoch /root/code/code_file2.py</br>
+sudo sed -i '/no_layer=/c\no_layer='$no_layer /root/code/code_file2.py</br>
+if sudo grep "deep" /root/code/code_file2.py</br>
+then</br>
+        test -t 1 && USE_TTY="-t"</br>
+        sudo docker rm -f os1</br>
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1</br>
+elif sudo grep "neural_net" /root/code/code_file2.py</br>
+then</br>
+        test -t 1 && USE_TTY="-t"</br>
+        sudo docker rm -f os1</br>
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 </br>
 
-compare=$(echo "$actual_accuracy > $expected" | bc )
+compare=$(echo "$actual_accuracy > $expected" | bc )</br>
 done*</br></br>
 
-For the tweaking you can refer to another code in the repository.
+For the tweaking you can refer to another code in the repository.</br>
 
 
 ### Job 3 :
