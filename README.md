@@ -2,7 +2,7 @@
 
 __This file contains all the steps required to perform automation for Machine Learning.__
 
-*[__Creating a Dockerfile__](### Creating a dockerfile)
+[__Creating a Dockerfile__](### Creating a dockerfile)
 
 __With the help of the Git plugin Jenkins can easily pull source code from any Git repository that the Jenkins build node can access__.<br/></br>
 
