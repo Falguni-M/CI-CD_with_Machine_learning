@@ -2,14 +2,14 @@
 
 __This file contains all the steps required to perform automation for Machine Learning.__
 
-1. [__Creating a Dockerfile__](#creating-a-dockerfile)
+1. [__Creating a Dockerfile__](#creating-a-dockerfile-)
 2. [__Pushing code to GitHub repository__](#job-1-)
 3. [__Automatic launch and training the model__](#job-2-)
   - [__Configure Email notification in jenkins__](#configure-email-notification-in-jenkins-)
   - [__Tweaking the model__](#tweaking-the-model-)
 4. [__Terminating the container__](#job-3-)
-  - [__Installing prometheus on Linux__](#installing-prometheus-on-linux-)
-  - [__Installing Grafana on Linux__](#installing-grafana-on-linux-)
+  - [__Installing prometheus on Linux__](#installing-prometheus-on-linux)
+  - [__Installing Grafana on Linux__](#installing-grafana-on-linux)
   - [__Start the jobs using pipeline view__](#start-the-jobs-using-pipeline-view-)
 
 __With the help of the Git plugin Jenkins can easily pull source code from any Git repository that the Jenkins build node can access__.<br/></br>
