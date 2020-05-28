@@ -109,7 +109,7 @@ You can also use *if sudo grep "sigmoid" /root/code/code_file2.py* or *if sudo g
 This will first check the model and will start the container accordingly.<br/>
 Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.<br/></br>
 
-### Configure Email notification in jenkins :
+### Configure Email notification in jenkins :</br>
 
 - Click the ‘Manage Jenkins’ menu option displayed at the right side of the screen. You will be redirected to the ‘Manage Jenkins’ page, where you need to select the ‘Manage Plugin’ option.<br/>
 - Click the ‘Available’ tab present at the top of the ‘Manage Plugin’ page.<br/>
@@ -141,24 +141,24 @@ Project Recipient List : email_id@gmail.com<br/>
 - Click the ‘Build now’ link and check the email id after the job execution.<br/>
 
 
-</br>![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)</br
+</br>![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)</br>
 
 
-### Tweaking the model :
+### Tweaking the model :</br>
 
 We already have a file "code_file2.py" that contains the code of the model.</br>
 But the tweak files contain the function used in code_file2.py which can be added for more layers.</br>
 __For checking the accuracy and running the model for improved accuracy we use the following code.__</br></br>
 
-*actual_accuracy=$(sudo cat /root/code/acc.txt)</br>
-expected=95</br>
-compare=$(echo "$actual_accuracy > $expected" | bc )</br>*
+    actual_accuracy=$(sudo cat /root/code/acc.txt)</br>
+    expected=95</br>
+    compare=$(echo "$actual_accuracy > $expected" | bc )</br>
 
 
-*while [[ $compare != 1 ]]</br>
-do</br>
-if sudo grep "deep" /root/code/code_file2.py</br>
-then</br>
+    while [[ $compare != 1 ]]</br>
+    do</br>
+    if sudo grep "deep" /root/code/code_file2.py</br>
+    then</br>
         test -t 1 && USE_TTY="-t"</br>
         sudo docker rm -f os1</br>
         filenames = ['code_file2.py', 'code_file0.py']</br>
@@ -169,8 +169,8 @@ then</br>
                                         outfile.write(line)</br>
         sudo docker cp output_file.py ./root/code/</br>
         sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1</br>
-elif sudo grep "neural_net" /root/code/code_file2.py</br>
-then</br>
+    elif sudo grep "neural_net" /root/code/code_file2.py</br>
+    then</br>
         test -t 1 && USE_TTY="-t"</br>
         sudo docker rm -f os1</br>
         filenames = ['code_file2.py', 'code_file0.py']</br>
@@ -180,10 +180,10 @@ then</br>
                                 for line in infile:</br>
                                         outfile.write(line)</br>
         sudo docker cp output_file.py ./root/code/</br>
-        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 </br>*
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 </br>
 
-*compare=$(echo "$actual_accuracy > $expected" | bc )</br>
-done*</br></br>
+    compare=$(echo "$actual_accuracy > $expected" | bc )</br>
+    done</br></br>
 
 For the tweaking you can refer to another code in the repository.</br>
 This code will check the model for the accuracy.</br>
@@ -192,7 +192,8 @@ Here I have given two tweaking files but you can add more provided you have to a
 
 ## Job 3 :
 
-__Terminating the container__ :
+__Terminating the container__ :</br></br>
+
 Add another job in Jenkins and name it.<br/>
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.<br/>
 
