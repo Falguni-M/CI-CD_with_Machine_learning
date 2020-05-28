@@ -64,14 +64,14 @@ Save this docker file and now build two different images for different environme
 ### Job 1 :
 
 __Pushing code to GitHub repository.__
-*Create a new job in Jenkins.<br/>
-*Enter a Job Name, select “Freestyle project” and hit “OK” button.<br/>
-*You will be redirected to the job configuration page where you can see the following settings :<br/>
-  *General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.<br/>
-  *__Source Code Management__: The section contents the source code options such as GIT, SVN, etc.<br/>
-  *__Build Triggers__: The section contents trigger settings that trigger the build based on the specific condition match.<br/>
-  *__Build__: The section contents the build steps that can be performed by adding Batch or shell command.<br/>
-  *__Post-build Actions__: The section contents the build steps that can be performed after the build action done.<br/>
+- Create a new job in Jenkins.<br/>
+- Enter a Job Name, select “Freestyle project” and hit “OK” button.<br/>
+- You will be redirected to the job configuration page where you can see the following settings :<br/>
+  - General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.<br/>
+  - __Source Code Management__: The section contents the source code options such as GIT, SVN, etc.<br/>
+  - __Build Triggers__: The section contents trigger settings that trigger the build based on the specific condition match.<br/>
+  - __Build__: The section contents the build steps that can be performed by adding Batch or shell command.<br/>
+  - __Post-build Actions__: The section contents the build steps that can be performed after the build action done.<br/>
 
 </br>![job1 2](https://user-images.githubusercontent.com/52490743/82749473-20a5a200-9dc7-11ea-9385-be7f2e89f930.png)</br>
 
@@ -104,34 +104,34 @@ Now click on post build actions and click on editable Email and type in your Ema
 
 #### Configure Email notification in jenkins :
 
-*Click the ‘Manage Jenkins’ menu option displayed at the right side of the screen. You will be redirected to the ‘Manage Jenkins’ page, where you need to select the ‘Manage Plugin’ option.<br/>
-*Click the ‘Available’ tab present at the top of the ‘Manage Plugin’ page.<br/>
-*Start typing ‘Notification’ in the ‘Filter’ field displayed at the top-right side of the ‘Manage Plugin’ page. Click the checkbox next to the ‘Email-ext plugin’ option. Click the ‘Install without restart’ button.<br/>
-*Now, click the checkbox next to the ‘Email-ext Template Plugin’ option. Click the ‘Install without restart’ button.<br/>
-*Go to the Jenkins home page and click the ‘Manage Jenkins’ menu option. Then, select the ‘Configure System’ option.<br/>
-*Enter the SMTP server name under ‘Email Notification’. Click the ‘Advanced’ button and then click the checkbox next to the ‘Use SMTP Authentication’ option. Now, set the following fields.<br/></br>
+- Click the ‘Manage Jenkins’ menu option displayed at the right side of the screen. You will be redirected to the ‘Manage Jenkins’ page, where you need to select the ‘Manage Plugin’ option.<br/>
+- Click the ‘Available’ tab present at the top of the ‘Manage Plugin’ page.<br/>
+- Start typing ‘Notification’ in the ‘Filter’ field displayed at the top-right side of the ‘Manage Plugin’ page. Click the checkbox next to the ‘Email-ext plugin’ option. Click the ‘Install without restart’ button.<br/>
+- Now, click the checkbox next to the ‘Email-ext Template Plugin’ option. Click the ‘Install without restart’ button.<br/>
+- Go to the Jenkins home page and click the ‘Manage Jenkins’ menu option. Then, select the ‘Configure System’ option.<br/>
+- Enter the SMTP server name under ‘Email Notification’. Click the ‘Advanced’ button and then click the checkbox next to the ‘Use SMTP Authentication’ option. Now, set the following fields.<br/></br>
 
-  *__SMTP server name__ : smtp.gmail.com<br/>
-  *__User name__: user_email_id@gmail.com<br/>
-  *__Password__: 123456<br/>
-  *__Use SSL__ : Checked<br/>
-  *__SMTP Port__: 456</br></br>
+  - __SMTP server name__ : smtp.gmail.com<br/>
+  - __User name__: user_email_id@gmail.com<br/>
+  - __Password__: 123456<br/>
+  - __Use SSL__ : Checked<br/>
+  - __SMTP Port__: 456</br></br>
 
-*Check the email notification functionality by clicking the checkbox next to the ‘Test configuration by sending Test e-mail recipient’ option. Enter a valid email id and click the ‘Test configuration’ button to check whether the email id is valid or not.<br/>
-*Go to the home page and click on a created job, like Homes. Then, click the ‘Configure’ option.<br/></br>
+- Check the email notification functionality by clicking the checkbox next to the ‘Test configuration by sending Test e-mail recipient’ option. Enter a valid email id and click the ‘Test configuration’ button to check whether the email id is valid or not.<br/>
+- Go to the home page and click on a created job, like Homes. Then, click the ‘Configure’ option.<br/></br>
 
-*Click the ‘Add post-build action’ drop-down.<br/>
-*Select the ‘E-mail Notification’ value.<br/>
-*Enter the recipient email id in the ‘E-mail Notification’ box and select the checkbox next to the ‘Send e-mail for every unstable build’ option.<br/>
-*Click the ‘Add post-build action’ drop-down and select the ‘Editable Email Notification’ value.<br/>
-*Fill the ‘Editable Email Notification’ fields.<br/></br>
+- Click the ‘Add post-build action’ drop-down.<br/>
+- Select the ‘E-mail Notification’ value.<br/>
+- Enter the recipient email id in the ‘E-mail Notification’ box and select the checkbox next to the ‘Send e-mail for every unstable build’ option.<br/>
+- Click the ‘Add post-build action’ drop-down and select the ‘Editable Email Notification’ value.<br/>
+- Fill the ‘Editable Email Notification’ fields.<br/></br>
 
 Project Recipient List : email_id@gmail.com<br/>
-*Click the ‘Advance Settings…’ button in the ‘Editable Email Notification’ box.<br/>
-*Click the ‘Add Trigger’ drop-down and select the ‘Always’ option.<br/>
-*Click the ‘Save’ button.<br/>
-*Go to the home page and click on the job, like Homes.<br/>
-*Click the ‘Build now’ link and check the email id after the job execution.<br/>
+- Click the ‘Advance Settings…’ button in the ‘Editable Email Notification’ box.<br/>
+- Click the ‘Add Trigger’ drop-down and select the ‘Always’ option.<br/>
+- Click the ‘Save’ button.<br/>
+- Go to the home page and click on the job, like Homes.<br/>
+- Click the ‘Build now’ link and check the email id after the job execution.<br/>
 
 
 </br>![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)</br
@@ -241,14 +241,14 @@ Visit the site and step by step install Grafana on Linux.
 
 https://computingforgeeks.com/how-to-install-grafana-on-rhel-8/
 
-*Go to Grafana server <localhost:3000> and login. The default user and password are “admin/admin”<br/>
-*From “ Home Dashboard” click on “add data source” then click on “Prometheus”.<br/>
-*In the URL field enter Prometheus URL in our case <prometheus_container_id:9090>. you can leave all other fields to default. Then click save and test.<br/>
-*Now you are ready to create your dashboard.<br/>
-*Once given the details click "Save & Test", it should say Data Source is working like below image.<br/>
-*Now come to Grafana home page and click "+" button which is in left side and click import.<br/>
-  *Give ID as 9964.<br/>
-  *In this Dashboard, you can see total pipelines, Last build status, Job Duration,etc.<br/>
+- Go to Grafana server <localhost:3000> and login. The default user and password are “admin/admin”<br/>
+- From “ Home Dashboard” click on “add data source” then click on “Prometheus”.<br/>
+- In the URL field enter Prometheus URL in our case <prometheus_container_id:9090>. you can leave all other fields to default. Then click save and test.<br/>
+- Now you are ready to create your dashboard.<br/>
+- Once given the details click "Save & Test", it should say Data Source is working like below image.<br/>
+- Now come to Grafana home page and click "+" button which is in left side and click import.<br/>
+  - Give ID as 9964.<br/>
+  - In this Dashboard, you can see total pipelines, Last build status, Job Duration,etc.<br/>
 
 #### Start the jobs using pipeline view :
 
