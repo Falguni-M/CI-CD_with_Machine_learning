@@ -2,7 +2,15 @@
 
 __This file contains all the steps required to perform automation for Machine Learning.__
 
-[__Creating a Dockerfile__](###creating-a-dockerfile)
+1. [__Creating a Dockerfile__](##creating-a-dockerfile)
+2. [__Pushing code to GitHub repository__](##job-1)
+3. [__Automatic launch and training the model__](##job-2)
+  - [__Configure Email notification in jenkins__](###configure-email-notification-in-jenkins)
+  - [__Tweaking the model__](###tweaking-the-model)
+4. [__Terminating the container__](##job-3)
+  - [__Installing prometheus on Linux__](###installing-prometheus-on-linux)
+  - [__Installing Grafana on Linux__](###installing-grafana-on-linux)
+  - [__Start the jobs using pipeline view__](###start-the-jobs-using-pipeline-view)
 
 __With the help of the Git plugin Jenkins can easily pull source code from any Git repository that the Jenkins build node can access__.<br/></br>
 
@@ -13,7 +21,7 @@ Let’s get started :<br/></br>
 First we write a code in code_file2.py file.<br/>
 __The code is given in the repository__.<br/>
 
-### Creating a dockerfile :
+## Creating a dockerfile :
 
 In RHEL8 fisrt make a directory that will store all the data or the program for our machine learning model.<br/>
         
@@ -61,13 +69,13 @@ Save this docker file and now build two different images for different environme
      docker build -t deep:v1 /root
      docker build -t neural_net:v1 /root
     
-### Job 1 :
+## Job 1 :
 
 __Pushing code to GitHub repository.__
 - Create a new job in Jenkins.<br/>
 - Enter a Job Name, select “Freestyle project” and hit “OK” button.<br/>
 - You will be redirected to the job configuration page where you can see the following settings :<br/>
-  - General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.<br/>
+  - __General Settings__: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.<br/>
   - __Source Code Management__: The section contents the source code options such as GIT, SVN, etc.<br/>
   - __Build Triggers__: The section contents trigger settings that trigger the build based on the specific condition match.<br/>
   - __Build__: The section contents the build steps that can be performed by adding Batch or shell command.<br/>
@@ -83,8 +91,7 @@ Now type the following command:</br>
 ![job1](https://user-images.githubusercontent.com/52490743/82749477-24392900-9dc7-11ea-8e99-638157737915.png)
 
 
-#### 
-### Job 2 :
+## Job 2 :
 
 __Automatic launch and training the model__.<br/>
 Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.<br/>
@@ -102,7 +109,7 @@ You can also use *if sudo grep "sigmoid" /root/code/code_file2.py* or *if sudo g
 This will first check the model and will start the container accordingly.<br/>
 Now click on post build actions and click on editable Email and type in your Email address, but first configure Email Notification in Jnekins.<br/></br>
 
-#### Configure Email notification in jenkins :
+### Configure Email notification in jenkins :
 
 - Click the ‘Manage Jenkins’ menu option displayed at the right side of the screen. You will be redirected to the ‘Manage Jenkins’ page, where you need to select the ‘Manage Plugin’ option.<br/>
 - Click the ‘Available’ tab present at the top of the ‘Manage Plugin’ page.<br/>
@@ -137,7 +144,7 @@ Project Recipient List : email_id@gmail.com<br/>
 </br>![job2 3](https://user-images.githubusercontent.com/52490743/82749482-28654680-9dc7-11ea-861d-ad26934d58c1.png)</br
 
 
-#### Tweaking the model :
+### Tweaking the model :
 
 We already have a file "code_file2.py" that contains the code of the model.</br>
 But the tweak files contain the function used in code_file2.py which can be added for more layers.</br>
@@ -145,7 +152,7 @@ __For checking the accuracy and running the model for improved accuracy we use t
 
 *actual_accuracy=$(sudo cat /root/code/acc.txt)</br>
 expected=95</br>
-compare=$(echo "$actual_accuracy > $expected" | bc )*</br>
+compare=$(echo "$actual_accuracy > $expected" | bc )</br>*
 
 
 *while [[ $compare != 1 ]]</br>
@@ -173,7 +180,7 @@ then</br>
                                 for line in infile:</br>
                                         outfile.write(line)</br>
         sudo docker cp output_file.py ./root/code/</br>
-        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 *</br>
+        sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 </br>*
 
 *compare=$(echo "$actual_accuracy > $expected" | bc )</br>
 done*</br></br>
@@ -183,7 +190,7 @@ This code will check the model for the accuracy.</br>
 If the accuracy is less than required, then this program will append the two program files and will create a new output file.</br>
 Here I have given two tweaking files but you can add more provided you have to add the conditions fir more files in this program.</br></br>
 
-### Job 3 :
+## Job 3 :
 
 __Terminating the container__ :
 Add another job in Jenkins and name it.<br/>
@@ -200,9 +207,9 @@ Now in the Execute shell type the following command.</br>
 
 
 
-### Job 4 :
+## Job 4 :
 
-#### Installing prometheus on Linux.
+### Installing prometheus on Linux.
 
 Go to the jenkins manage plugins and install prometheus mertics plugin.</br>
 
@@ -235,7 +242,7 @@ Here you will see another target has been added to the dashboard.<br/>
 ![job5](https://user-images.githubusercontent.com/52490743/82749501-3a46e980-9dc7-11ea-9927-aa510000802c.png)
 
 
-#### Installing Grafana on Linux
+### Installing Grafana on Linux
 
 Visit the site and step by step install Grafana on Linux.
 
@@ -250,7 +257,7 @@ https://computingforgeeks.com/how-to-install-grafana-on-rhel-8/
   - Give ID as 9964.<br/>
   - In this Dashboard, you can see total pipelines, Last build status, Job Duration,etc.<br/>
 
-#### Start the jobs using pipeline view :
+### Start the jobs using pipeline view :
 
 First install delivery pipeline and build pipeline plugin on jenkins.<br/>
 Click on '+' in Jenkins Dashboard and select pipeline and give a name to the pipeline.<br/>
